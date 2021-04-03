@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../../services/courses.service'
 
+
 @Component({
-  selector: 'score-card',
-  templateUrl: './score-card.component.html',
-  styleUrls: ['./score-card.component.scss']
+  selector: 'app-course-select',
+  templateUrl: './course-select.component.html',
+  styleUrls: ['./course-select.component.scss']
 })
-export class ScoreCardComponent implements OnInit {
+export class CourseSelectComponent implements OnInit {
   courses: any[] = [];
-  constructor(
+  constructor( 
     private CoursesService: CoursesService, 
     ) { }
 
@@ -18,7 +19,7 @@ export class ScoreCardComponent implements OnInit {
       response.courses.forEach(course => {
         this.CoursesService.getCourseData(course.id)
           .subscribe((response: any) => {
-            this.courses.push({id: response.data.id, name: response.data.name, image: response.data.thumbnail, holes: response.data.holes})
+            this.courses.push({id: response.data.id, name: response.data.name, image: response.data.thumbnail})
             console.log(this.courses)
           })
       })
