@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../../services/courses.service'
-import { Course } from 'src/app/interfaces/course'
+
 @Component({
-  selector: 'course-select',
-  templateUrl: './course-select.component.html',
-  styleUrls: ['./course-select.component.scss']
+  selector: 'main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
-export class CourseSelectComponent implements OnInit {
+export class MainComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'image']
   courses: any[] = [];
 
