@@ -8,7 +8,7 @@ import { Course } from 'src/app/interfaces/course'
 })
 export class CourseSelectComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'image']
-  courses: Course[];
+  courses: any[] = [];
 
   constructor(
     private CoursesService: CoursesService,
@@ -17,7 +17,16 @@ export class CourseSelectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.courses = this.CoursesService.courses
+    this.CoursesService.getCourses()
+    .subscribe((response: any) => {
+      response.courses.forEach(course => {
+        this.CoursesService.getCourseData(course.id)
+          .subscribe((response: any) => {
+            this.courses.push(response)
+            console.log(this.courses)
+          })
+      })
+    })
   }
 
 }
