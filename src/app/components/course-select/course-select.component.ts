@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../../services/courses.service'
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-course-select',
   templateUrl: './course-select.component.html',
@@ -9,6 +10,7 @@ export class CourseSelectComponent implements OnInit {
   courses: any[] = [];
   constructor(
     private CoursesService: CoursesService, 
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -18,10 +20,14 @@ export class CourseSelectComponent implements OnInit {
         this.CoursesService.getCourseData(course.id)
           .subscribe((response: any) => {
             this.courses.push({id: response.data.id, name: response.data.name, image: response.data.thumbnail})
-            console.log(this.courses)
           })
       })
     })
   }
+
+  loadSelectedCourse(courseID: string): void {
+    this.router.navigate(['./play', {id: courseID}]);
+}
+
 
 }
