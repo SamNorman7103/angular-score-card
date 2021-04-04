@@ -52,7 +52,6 @@ export class ScoreCardComponent implements OnInit {
         hcap.push(hole.teeBoxes[this.tee]);
       }
     });
-    console.log(hcap);
     return hcap;
   }
   getInHcap() {
@@ -62,7 +61,6 @@ export class ScoreCardComponent implements OnInit {
         hcap.push(hole.teeBoxes[this.tee]);
       }
     });
-    console.log(hcap);
     return hcap;
   }
 
