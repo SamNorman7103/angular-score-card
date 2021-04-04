@@ -1,0 +1,19 @@
+#course-select-container{
+    display: flex
+}
+.select-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.actions{
+    display: flex;
+}
+
+@media screen and (max-width: 750px) {
+    #course-select-container {
+      display: flex;
+      flex-direction: column;
+    }
+  }

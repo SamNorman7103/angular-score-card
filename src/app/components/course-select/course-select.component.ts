@@ -17,7 +17,7 @@ export class CourseSelectComponent implements OnInit {
       response.courses.forEach(course => {
         this.CoursesService.getCourseData(course.id)
           .subscribe((response: any) => {
-            this.courses.push({id: response.data.id, name: response.data.name, image: response.data.thumbnail, holes: response.data.holes})
+            this.courses.push({id: response.data.id, name: response.data.name, image: response.data.thumbnail})
             console.log(this.courses)
           })
       })
