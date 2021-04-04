@@ -1,6 +1,7 @@
 #main-card-container{
     display: flex;
     width: 100%;
+    justify-content: center;
 }
 
 .button{
@@ -8,8 +9,33 @@
     margin: 5px
 }
 
-table, tr, tbody, td {
-    border: 1px solid rgba(0, 0, 0, 0.208);
-    border-spacing: 0px;
+table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 375px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 100%
 }
 
+td {
+    padding: 4px 5px;
+    border: solid thin black;
+    text-align: center;
+}
+
+.hole-row {
+    background-color: #009879;
+    color: #ffffff;
+}
+
+
+
+@media screen and (max-width: 800px) {
+    #main-card-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  }
