@@ -12,7 +12,6 @@ export class ScoreCardComponent implements OnInit {
   selectedCourse: any[] = [];
   tee: number; //0 pro 1 Champion 2 Men 3 Women
 
-
   constructor(
     private CoursesService: CoursesService,
     private route: ActivatedRoute
@@ -25,50 +24,49 @@ export class ScoreCardComponent implements OnInit {
       response.courses.forEach((course) => {
         this.CoursesService.getCourseData(course.id).subscribe(
           (response: any) => {
-            if (response.data.id == this.route.snapshot.params['id']){
-              console.log('course found')
+            if (response.data.id == this.route.snapshot.params['id']) {
+              console.log('course found');
               this.selectedCourse.push({
                 id: response.data.id,
                 name: response.data.name,
                 image: response.data.thumbnail,
                 holes: response.data.holes,
-              })
-              console.log(this.selectedCourse)
-            }        
+              });
+              console.log(this.selectedCourse);
+            }
           }
         );
       });
     });
   }
-  getOutHoles(){
-    return this.selectedCourse[0].holes.filter(hole => hole.hole <= 9)
+  getOutHoles() {
+    return this.selectedCourse[0].holes.filter((hole) => hole.hole <= 9);
   }
-  getInHoles(){
-    return this.selectedCourse[0].holes.filter(hole => hole.hole > 9)
+  getInHoles() {
+    return this.selectedCourse[0].holes.filter((hole) => hole.hole > 9);
   }
-  getOutHcap(){
+  getOutHcap() {
     let hcap = [];
-    this.selectedCourse[0].holes.forEach(hole => {
-      if (hole.hole <=9){
-        hcap.push(hole.teeBoxes[this.tee])
+    this.selectedCourse[0].holes.forEach((hole) => {
+      if (hole.hole <= 9) {
+        hcap.push(hole.teeBoxes[this.tee]);
       }
-    })
-    console.log(hcap)
+    });
+    console.log(hcap);
     return hcap;
   }
-  getInHcap(){
+  getInHcap() {
     let hcap = [];
-    this.selectedCourse[0].holes.forEach(hole => {
-      if (hole.hole >9){
-        hcap.push(hole.teeBoxes[this.tee])
+    this.selectedCourse[0].holes.forEach((hole) => {
+      if (hole.hole > 9) {
+        hcap.push(hole.teeBoxes[this.tee]);
       }
-    })
-    console.log(hcap)
+    });
+    console.log(hcap);
     return hcap;
   }
 
-  setTee(tee: number){
+  setTee(tee: number) {
     this.tee = tee;
   }
-
 }
