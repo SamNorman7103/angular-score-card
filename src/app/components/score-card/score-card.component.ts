@@ -39,12 +39,47 @@ export class ScoreCardComponent implements OnInit {
       });
     });
   }
-  getOutHoles() {
-    return this.selectedCourse[0].holes.filter((hole) => hole.hole <= 9);
+  
+  getOutPar() {
+    let par = [];
+    this.selectedCourse[0].holes.forEach((hole) => {
+      if (hole.hole <= 9) {
+        par.push(hole.teeBoxes[this.tee]);
+      }
+    });
+    return par;
   }
-  getInHoles() {
-    return this.selectedCourse[0].holes.filter((hole) => hole.hole > 9);
+
+  getInPar() {
+    let par = [];
+    this.selectedCourse[0].holes.forEach((hole) => {
+      if (hole.hole > 9) {
+        par.push(hole.teeBoxes[this.tee]);
+      }
+    });
+    return par;
   }
+
+  getOutYards() {
+    let yards = [];
+    this.selectedCourse[0].holes.forEach((hole) => {
+      if (hole.hole <= 9) {
+        yards.push(hole.teeBoxes[this.tee]);
+      }
+    });
+    return yards;
+  }
+
+  getInYards() {
+    let yards = [];
+    this.selectedCourse[0].holes.forEach((hole) => {
+      if (hole.hole > 9) {
+        yards.push(hole.teeBoxes[this.tee]);
+      }
+    });
+    return yards;
+  }
+
   getOutHcap() {
     let hcap = [];
     this.selectedCourse[0].holes.forEach((hole) => {
@@ -54,6 +89,7 @@ export class ScoreCardComponent implements OnInit {
     });
     return hcap;
   }
+
   getInHcap() {
     let hcap = [];
     this.selectedCourse[0].holes.forEach((hole) => {

@@ -24,21 +24,21 @@
             <td class="columnLabel">7</td>
             <td class="columnLabel">8</td>
             <td class="columnLabel">9</td>
-            <td class="columnLabel">Out</td>
+            <td class="columnLabel">Out Total</td>
           </tr>
         </tbody>
         <tbody class="top-section">
           <tr class="par-row">
             <td class="rowLabel">Par</td>
-            <td *ngFor="let hole of getOutHoles()">
-              {{ hole.teeBoxes[0].par }}
+            <td *ngFor="let hole of getOutPar()">
+              {{ hole.par }}
             </td>
             <td id="par-out-total"></td>
           </tr>
           <tr class="yardage-row">
             <td class="rowLabel">Yards</td>
-            <td *ngFor="let hole of getOutHoles()">
-              {{ hole.teeBoxes[0].yards }}
+            <td *ngFor="let hole of getOutYards()">
+              {{ hole.yards }}
             </td>
             <td id="yards-out-total"></td>
           </tr>
@@ -66,19 +66,19 @@
             <td class="columnLabel">16</td>
             <td class="columnLabel">17</td>
             <td class="columnLabel">18</td>
-            <td class="columnLabel" id="hole-in-total">In</td>
+            <td class="columnLabel" id="hole-in-total">In Total</td>
           </tr>
         </tbody>
         <tbody class="top-section">
           <tr class="par-row">
-            <td *ngFor="let hole of getInHoles()">
-              {{ hole.teeBoxes[0].par }}
+            <td *ngFor="let hole of getInPar()">
+              {{ hole.par }}
             </td>
             <td id="par-in-total"></td>
           </tr>
           <tr class="yardage-row">
-            <td *ngFor="let hole of getInHoles()">
-              {{ hole.teeBoxes[0].yards }}
+            <td *ngFor="let hole of getInYards()">
+              {{ hole.yards }}
             </td>
             <td id="yards-in-total"></td>
           </tr>
