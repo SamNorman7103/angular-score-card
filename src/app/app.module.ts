@@ -13,7 +13,6 @@ import { CourseSelectComponent } from './components/course-select/course-select.
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
     ScoreCardComponent,
     CourseSelectComponent
   ],
