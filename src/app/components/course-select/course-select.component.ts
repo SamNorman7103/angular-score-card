@@ -8,6 +8,7 @@ import { Router } from '@angular/router'
 })
 export class CourseSelectComponent implements OnInit {
   courses: any[] = [];
+  
   constructor(
     private CoursesService: CoursesService, 
     private router: Router
@@ -28,6 +29,6 @@ export class CourseSelectComponent implements OnInit {
   loadSelectedCourse(courseID: string): void {
     this.router.navigate(['./play', {id: courseID}]);
 }
-
+  
 
 }

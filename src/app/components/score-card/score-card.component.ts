@@ -10,13 +10,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ScoreCardComponent implements OnInit {
   selectedCourse: any[] = [];
-  
+  tee: number; //0 pro 1 Champion 2 Men 3 Women
+
+
   constructor(
     private CoursesService: CoursesService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.tee = 0;
+
     this.CoursesService.getCourses().subscribe((response: any) => {
       response.courses.forEach((course) => {
         this.CoursesService.getCourseData(course.id).subscribe(
@@ -42,8 +46,29 @@ export class ScoreCardComponent implements OnInit {
   getInHoles(){
     return this.selectedCourse[0].holes.filter(hole => hole.hole > 9)
   }
-  //next is to add a tee flag and then render the hcap accordingly
-  setTee(number: string[]){
-
+  getOutHcap(){
+    let hcap = [];
+    this.selectedCourse[0].holes.forEach(hole => {
+      if (hole.hole <=9){
+        hcap.push(hole.teeBoxes[this.tee])
+      }
+    })
+    console.log(hcap)
+    return hcap;
   }
+  getInHcap(){
+    let hcap = [];
+    this.selectedCourse[0].holes.forEach(hole => {
+      if (hole.hole >9){
+        hcap.push(hole.teeBoxes[this.tee])
+      }
+    })
+    console.log(hcap)
+    return hcap;
+  }
+
+  setTee(tee: number){
+    this.tee = tee;
+  }
+
 }

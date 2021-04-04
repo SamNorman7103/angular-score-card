@@ -4,10 +4,10 @@
       <div class="controls-item" id="course-select"></div>
       <div class="controls-item" id="tee-select">
         <span>Select Tee:</span>
-        <button mat-button class="button">Men's</button>
-        <button mat-button class="button">Women's</button>
-        <button mat-button class="button">Pro</button>
-        <button mat-button class="button">Champion</button>
+        <button mat-button class="button" (click)="setTee(2)">Men's</button>
+        <button mat-button class="button" (click)="setTee(3)">Women's</button>
+        <button mat-button class="button" (click)="setTee(0)">Pro</button>
+        <button mat-button class="button" (click)="setTee(1)">Champion</button>
       </div>
     </div>
     <div id="game-finished-message"></div>
@@ -48,15 +48,9 @@
         <tbody>
           <tr class="handicap-row">
             <td class="rowLabel">Hcap</td>
-            <td id="handicap-1"></td>
-            <td id="handicap-2"></td>
-            <td id="handicap-3"></td>
-            <td id="handicap-4"></td>
-            <td id="handicap-5"></td>
-            <td id="handicap-6"></td>
-            <td id="handicap-7"></td>
-            <td id="handicap-8"></td>
-            <td id="handicap-9"></td>
+            <td *ngFor="let hole of getOutHcap()">
+              {{hole.hcp}}
+            </td>
             <td id="handicap-out-total"></td>
           </tr>
         </tbody>
@@ -93,15 +87,9 @@
         <tbody id="player-in-container"></tbody>
         <tbody>
           <tr class="handicap-row">
-            <td id="handicap-10"></td>
-            <td id="handicap-11"></td>
-            <td id="handicap-12"></td>
-            <td id="handicap-13"></td>
-            <td id="handicap-14"></td>
-            <td id="handicap-15"></td>
-            <td id="handicap-16"></td>
-            <td id="handicap-17"></td>
-            <td id="handicap-18"></td>
+            <td *ngFor="let hole of getInHcap()">
+              {{hole.hcp}}
+            </td>
             <td id="handicap-in-total"></td>
           </tr>
         </tbody>
