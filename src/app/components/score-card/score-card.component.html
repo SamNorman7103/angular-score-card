@@ -1,147 +1,112 @@
 <div>
-    <div id="main-container">
-        <div id="controls">
-          <div class="controls-item" id="course-select"></div>
-          <div class="controls-item" id="tee-select">
-            <span>Select Tee:</span>
-            <button>
-              Men's
-            </button>
-            <button>
-              Women's
-            </button>
-            <button>
-              Pro
-            </button>
-            <button>
-              Champion
-            </button>
-          </div>
-        </div>
-        <div id="game-finished-message"></div>
-        <div *ngFor='let course of selectedCourse'id="main-card-container">
-          <table id="out-container">
-            <tbody>
-              <tr class="hole-row">
-                <td class="rowLabel">Hole</td>
-                <td class="columnLabel">1</td>
-                <td class="columnLabel">2</td>
-                <td class="columnLabel">3</td>
-                <td class="columnLabel">4</td>
-                <td class="columnLabel">5</td>
-                <td class="columnLabel">6</td>
-                <td class="columnLabel">7</td>
-                <td class="columnLabel">8</td>
-                <td class="columnLabel">9</td>
-                <td class="columnLabel">Out</td>
-              </tr>
-            </tbody>
-            <tbody class="top-section">
-              <tr class="par-row">
-                <td class="rowLabel">Par</td>
-                <td id="par-1"></td>
-                <td id="par-2"></td>
-                <td id="par-3"></td>
-                <td id="par-4"></td>
-                <td id="par-5"></td>
-                <td id="par-6"></td>
-                <td id="par-7"></td>
-                <td id="par-8"></td>
-                <td id="par-9"></td>
-                <td id="par-out-total"></td>
-              </tr>
-              <tr class="yardage-row">
-                <td class="rowLabel">Yards</td>
-                <td id="yards-1"></td>
-                <td id="yards-2"></td>
-                <td id="yards-3"></td>
-                <td id="yards-4"></td>
-                <td id="yards-5"></td>
-                <td id="yards-6"></td>
-                <td id="yards-7"></td>
-                <td id="yards-8"></td>
-                <td id="yards-9"></td>
-                <td id="yards-out-total"></td>
-              </tr>
-            </tbody>
-            <tbody id="player-out-container"></tbody>
-            <tbody>
-              <tr class="handicap-row">
-                <td class="rowLabel">Hcap</td>
-                <td id="handicap-1"></td>
-                <td id="handicap-2"></td>
-                <td id="handicap-3"></td>
-                <td id="handicap-4"></td>
-                <td id="handicap-5"></td>
-                <td id="handicap-6"></td>
-                <td id="handicap-7"></td>
-                <td id="handicap-8"></td>
-                <td id="handicap-9"></td>
-                <td id="handicap-out-total"></td>
-              </tr>
-            </tbody>
-          </table>
-          <table id="in-container">
-            <tbody>
-              <tr class="hole-row">
-                <td class="columnLabel">10</td>
-                <td class="columnLabel">11</td>
-                <td class="columnLabel">12</td>
-                <td class="columnLabel">13</td>
-                <td class="columnLabel">14</td>
-                <td class="columnLabel">15</td>
-                <td class="columnLabel">16</td>
-                <td class="columnLabel">17</td>
-                <td class="columnLabel">18</td>
-                <td class="columnLabel" id="hole-in-total">In</td>
-              </tr>
-            </tbody>
-            <tbody class="top-section">
-              <tr class="par-row">
-                <td id="par-10"></td>
-                <td id="par-11"></td>
-                <td id="par-12"></td>
-                <td id="par-13"></td>
-                <td id="par-14"></td>
-                <td id="par-15"></td>
-                <td id="par-16"></td>
-                <td id="par-17"></td>
-                <td id="par-18"></td>
-                <td id="par-in-total"></td>
-              </tr>
-              <tr class="yardage-row">
-                <td id="yards-10"></td>
-                <td id="yards-11"></td>
-                <td id="yards-12"></td>
-                <td id="yards-13"></td>
-                <td id="yards-14"></td>
-                <td id="yards-15"></td>
-                <td id="yards-16"></td>
-                <td id="yards-17"></td>
-                <td id="yards-18"></td>
-                <td id="yards-in-total"></td>
-              </tr>
-            </tbody>
-            <tbody id="player-in-container"></tbody>
-            <tbody>
-              <tr class="handicap-row">
-                <td id="handicap-10"></td>
-                <td id="handicap-11"></td>
-                <td id="handicap-12"></td>
-                <td id="handicap-13"></td>
-                <td id="handicap-14"></td>
-                <td id="handicap-15"></td>
-                <td id="handicap-16"></td>
-                <td id="handicap-17"></td>
-                <td id="handicap-18"></td>
-                <td id="handicap-in-total"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <button id="add-player-button" onclick="player.newPlayer()">
-        Add Player
-      </button>
+  <div *ngFor="let course of selectedCourse" id="main-container">
+    <div id="controls">
+      <div class="controls-item" id="course-select"></div>
+      <div class="controls-item" id="tee-select">
+        <span>Select Tee:</span>
+        <button mat-button class="button">Men's</button>
+        <button mat-button class="button">Women's</button>
+        <button mat-button class="button">Pro</button>
+        <button mat-button class="button">Champion</button>
       </div>
-  
+    </div>
+    <div id="game-finished-message"></div>
+    <div id="main-card-container">
+      <table id="out-container">
+        <tbody>
+          <tr class="hole-row">
+            <td class="rowLabel">Hole</td>
+            <td class="columnLabel">1</td>
+            <td class="columnLabel">2</td>
+            <td class="columnLabel">3</td>
+            <td class="columnLabel">4</td>
+            <td class="columnLabel">5</td>
+            <td class="columnLabel">6</td>
+            <td class="columnLabel">7</td>
+            <td class="columnLabel">8</td>
+            <td class="columnLabel">9</td>
+            <td class="columnLabel">Out</td>
+          </tr>
+        </tbody>
+        <tbody class="top-section">
+          <tr class="par-row">
+            <td class="rowLabel">Par</td>
+            <td *ngFor="let hole of getOutHoles()">
+              {{ hole.teeBoxes[0].par }}
+            </td>
+            <td id="par-out-total"></td>
+          </tr>
+          <tr class="yardage-row">
+            <td class="rowLabel">Yards</td>
+            <td *ngFor="let hole of getOutHoles()">
+              {{ hole.teeBoxes[0].yards }}
+            </td>
+            <td id="yards-out-total"></td>
+          </tr>
+        </tbody>
+        <tbody id="player-out-container"></tbody>
+        <tbody>
+          <tr class="handicap-row">
+            <td class="rowLabel">Hcap</td>
+            <td id="handicap-1"></td>
+            <td id="handicap-2"></td>
+            <td id="handicap-3"></td>
+            <td id="handicap-4"></td>
+            <td id="handicap-5"></td>
+            <td id="handicap-6"></td>
+            <td id="handicap-7"></td>
+            <td id="handicap-8"></td>
+            <td id="handicap-9"></td>
+            <td id="handicap-out-total"></td>
+          </tr>
+        </tbody>
+      </table>
+      <table id="in-container">
+        <tbody>
+          <tr class="hole-row">
+            <td class="columnLabel">10</td>
+            <td class="columnLabel">11</td>
+            <td class="columnLabel">12</td>
+            <td class="columnLabel">13</td>
+            <td class="columnLabel">14</td>
+            <td class="columnLabel">15</td>
+            <td class="columnLabel">16</td>
+            <td class="columnLabel">17</td>
+            <td class="columnLabel">18</td>
+            <td class="columnLabel" id="hole-in-total">In</td>
+          </tr>
+        </tbody>
+        <tbody class="top-section">
+          <tr class="par-row">
+            <td *ngFor="let hole of getInHoles()">
+              {{ hole.teeBoxes[0].par }}
+            </td>
+            <td id="par-in-total"></td>
+          </tr>
+          <tr class="yardage-row">
+            <td *ngFor="let hole of getInHoles()">
+              {{ hole.teeBoxes[0].yards }}
+            </td>
+            <td id="yards-in-total"></td>
+          </tr>
+        </tbody>
+        <tbody id="player-in-container"></tbody>
+        <tbody>
+          <tr class="handicap-row">
+            <td id="handicap-10"></td>
+            <td id="handicap-11"></td>
+            <td id="handicap-12"></td>
+            <td id="handicap-13"></td>
+            <td id="handicap-14"></td>
+            <td id="handicap-15"></td>
+            <td id="handicap-16"></td>
+            <td id="handicap-17"></td>
+            <td id="handicap-18"></td>
+            <td id="handicap-in-total"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button mat-button class="button" id="add-player-button">Add Player</button>
+  </div>
 </div>

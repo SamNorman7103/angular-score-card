@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../../services/courses.service';
-import { Courses } from 'src/app/interfaces/courses';
+
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,27 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ScoreCardComponent implements OnInit {
   selectedCourse: any[] = [];
-  displayedColumns: string[] = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15',
-    '16',
-    '17',
-    '18',
-  ];
-
+  
   constructor(
     private CoursesService: CoursesService,
     private route: ActivatedRoute
@@ -55,5 +35,15 @@ export class ScoreCardComponent implements OnInit {
         );
       });
     });
+  }
+  getOutHoles(){
+    return this.selectedCourse[0].holes.filter(hole => hole.hole <= 9)
+  }
+  getInHoles(){
+    return this.selectedCourse[0].holes.filter(hole => hole.hole > 9)
+  }
+  //next is to add a tee flag and then render the hcap accordingly
+  setTee(number: string[]){
+
   }
 }
