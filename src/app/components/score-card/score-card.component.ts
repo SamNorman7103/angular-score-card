@@ -18,7 +18,7 @@ export class ScoreCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.tee = 0;
+    this.tee = 2;
 
     this.CoursesService.getCourses().subscribe((response: any) => {
       response.courses.forEach((course) => {

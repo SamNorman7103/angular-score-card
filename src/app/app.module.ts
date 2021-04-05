@@ -10,6 +10,7 @@ import { ScoreCardComponent } from './components/score-card/score-card.component
 import { HttpClientModule } from '@angular/common/http';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CourseSelectComponent } from './components/course-select/course-select.component';
+import { PlayerComponent } from './components/player/player.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { CourseSelectComponent } from './components/course-select/course-select.
     ScoreCardComponent,
     NavBarComponent,
     CourseSelectComponent,
+    PlayerComponent,
   ],
   imports: [
     BrowserModule,
