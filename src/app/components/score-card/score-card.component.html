@@ -3,8 +3,9 @@
     <div *ngFor="let course of selectedCourse" id="controls">
       <div class="flex-column">
         <h1>{{course.name}}</h1>
-        <span>Select Tee:</span>
+       
         <div class="flex" id="tee-select">
+          <span>Select Tee:</span>
           <button mat-button class="button" (click)="setTee(2)">Men's</button>
           <button mat-button class="button" (click)="setTee(3)">Women's</button>
           <button mat-button class="button" (click)="setTee(0)">Pro</button>

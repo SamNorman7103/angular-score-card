@@ -29,8 +29,10 @@ time, mark, audio, video {
 
 .button{
     background-color: rgba(0, 115, 255, 0.447);
-    margin: 5px
+    margin: 5px;
 }
+
+
 
 table {
     border-collapse: collapse;
@@ -74,7 +76,8 @@ input{
     display: flex;
     border: none;
     background: transparent;
-   
+    outline: none;
+    
 }
 
 #player1{
@@ -97,4 +100,5 @@ input{
       flex-direction: column;
       width: 100%;
     }
+    
   }
