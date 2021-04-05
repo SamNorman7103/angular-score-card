@@ -1,12 +1,15 @@
 <div>
   <div id="main-container">
-    <div id="controls">
-      <div class="controls-item" id="tee-select">
+    <div *ngFor="let course of selectedCourse" id="controls">
+      <div class="flex-column">
+        <h1>{{course.name}}</h1>
         <span>Select Tee:</span>
-        <button mat-button class="button" (click)="setTee(2)">Men's</button>
-        <button mat-button class="button" (click)="setTee(3)">Women's</button>
-        <button mat-button class="button" (click)="setTee(0)">Pro</button>
-        <button mat-button class="button" (click)="setTee(1)">Champion</button>
+        <div class="flex" id="tee-select">
+          <button mat-button class="button" (click)="setTee(2)">Men's</button>
+          <button mat-button class="button" (click)="setTee(3)">Women's</button>
+          <button mat-button class="button" (click)="setTee(0)">Pro</button>
+          <button mat-button class="button" (click)="setTee(1)">Champion</button>
+        </div>
       </div>
     </div>
     <div id="game-finished-message"></div>
@@ -94,6 +97,5 @@
         </tbody>
       </table>
     </div>
-    <button mat-button class="button" id="add-player-button">Add Player</button>
   </div>
 </div>

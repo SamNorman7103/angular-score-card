@@ -30,8 +30,19 @@ td {
     color: #ffffff;
 }
 
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
 
-
+img{
+    max-width: 375px;
+}
 @media screen and (max-width: 800px) {
     #main-card-container {
       display: flex;
