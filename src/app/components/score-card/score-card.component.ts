@@ -20,6 +20,7 @@ export class ScoreCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.tee = 2;
+    this.addPlayer()
 
     this.CoursesService.getCourses().subscribe((response: any) => {
       response.courses.forEach((course) => {
@@ -109,7 +110,7 @@ export class ScoreCardComponent implements OnInit {
     if (this.players.length < 4){
       this.players.push(
         {
-         id: this.players.length + 1,
+         id: "player" + Number(this.players.length+1),
          name: "",
          score: 0
         }

@@ -27,7 +27,7 @@
             <td class="columnLabel">7</td>
             <td class="columnLabel">8</td>
             <td class="columnLabel">9</td>
-            <td class="columnLabel">Out Total</td>
+            <td class="columnLabel">Out</td>
           </tr>
         </tbody>
         <tbody class="top-section">
@@ -56,9 +56,9 @@
           </tr>
         </tbody>
         <tbody>
-          <tr *ngFor="let player of players">
+          <tr *ngFor="let player of players" id={{player.id}}>
             <td>
-              <input type="text" placeholder="...Name" />
+              <input type="text" placeholder={{player.id}} />
             </td>
             <td *ngFor="let hole of [0, 1, 2, 3, 4, 5, 6, 7, 8]">
               <input type="text" name="{{ hole + 1}}" placeholder="..." />
@@ -79,7 +79,7 @@
             <td class="columnLabel">16</td>
             <td class="columnLabel">17</td>
             <td class="columnLabel">18</td>
-            <td class="columnLabel" id="hole-in-total">In Total</td>
+            <td class="columnLabel" id="hole-in-total">In</td>
           </tr>
         </tbody>
         <tbody class="top-section">
@@ -96,13 +96,20 @@
             <td id="yards-in-total"></td>
           </tr>
         </tbody>
-        <tbody id="player-in-container"></tbody>
         <tbody>
           <tr class="handicap-row">
             <td *ngFor="let hole of getInHcap()">
               {{hole.hcp}}
             </td>
             <td id="handicap-in-total"></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr *ngFor="let player of players" id={{player.id}}>
+            <td *ngFor="let hole of [0, 1, 2, 3, 4, 5, 6, 7, 8]">
+              <input type="text" name="{{ hole + 1}}" placeholder="..." />
+            </td>
+            <td id={{player.id}}></td>
           </tr>
         </tbody>
       </table>
