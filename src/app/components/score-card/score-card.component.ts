@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../../services/courses.service';
-
 import { ActivatedRoute } from '@angular/router';
+import { Player } from '../../interfaces/player';
 
 @Component({
   selector: 'score-card',
@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ScoreCardComponent implements OnInit {
   selectedCourse: any[] = [];
   tee: number; //0 pro 1 Champion 2 Men 3 Women
+  players: Player[] = [];
 
   constructor(
     private CoursesService: CoursesService,
@@ -103,4 +104,17 @@ export class ScoreCardComponent implements OnInit {
   setTee(tee: number) {
     this.tee = tee;
   }
+
+  addPlayer(){
+    if (this.players.length < 4){
+      this.players.push(
+        {
+         id: this.players.length + 1,
+         name: "",
+         score: 0
+        }
+      )
+    }
+  }
+  
 }
