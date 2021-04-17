@@ -32,7 +32,21 @@ time, mark, audio, video {
     margin: 5px;
 }
 
+.formfield{
+    max-height: 20px;
+    text-align: center;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+mat-form-field td{
+    border: none;
+    text-align: center;
+    justify-content: center;
+    
+}
 
 table {
     border-collapse: collapse;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../../services/courses.service';
 import { ActivatedRoute } from '@angular/router';
 import { Player } from '../../interfaces/player';
+import { FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'score-card',
@@ -16,6 +17,7 @@ export class ScoreCardComponent implements OnInit {
   totalPar: number;
   totalYards: number;
   totalHcap: number;
+  playerNameFC = new FormControl('', this.nameValidator());
 
   constructor(
     private CoursesService: CoursesService,
@@ -24,12 +26,10 @@ export class ScoreCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.tee = 2;
-    this.addPlayer();
     this.isComplete = false;
     this.totalPar = 0;
     this.totalYards = 0;
     this.totalHcap = 0;
-
 
     this.CoursesService.getCourses().subscribe((response: any) => {
       response.courses.forEach((course) => {
@@ -115,36 +115,39 @@ export class ScoreCardComponent implements OnInit {
     this.tee = tee;
   }
 
-  addPlayer() {
+  addPlayer(): void {
     if (this.players.length < 4) {
-      this.players.push({
-        id: 'player' + Number(this.players.length + 1),
-        name: '',
-        data: {
-          out: [
-            { hole: `player${this.players.length + 1}h1`, score: 0 },
-            { hole: `player${this.players.length + 1}h2`, score: 0 },
-            { hole: `player${this.players.length + 1}h3`, score: 0 },
-            { hole: `player${this.players.length + 1}h4`, score: 0 },
-            { hole: `player${this.players.length + 1}h5`, score: 0 },
-            { hole: `player${this.players.length + 1}h6`, score: 0 },
-            { hole: `player${this.players.length + 1}h7`, score: 0 },
-            { hole: `player${this.players.length + 1}h8`, score: 0 },
-            { hole: `player${this.players.length + 1}h9`, score: 0 },
-          ],
-          in: [
-            { hole: `player${this.players.length + 1}h10`, score: 0 },
-            { hole: `player${this.players.length + 1}h11`, score: 0 },
-            { hole: `player${this.players.length + 1}h12`, score: 0 },
-            { hole: `player${this.players.length + 1}h13`, score: 0 },
-            { hole: `player${this.players.length + 1}h14`, score: 0 },
-            { hole: `player${this.players.length + 1}h15`, score: 0 },
-            { hole: `player${this.players.length + 1}h16`, score: 0 },
-            { hole: `player${this.players.length + 1}h17`, score: 0 },
-            { hole: `player${this.players.length + 1}h18`, score: 0 },
-          ],
-        },
-      });
+      if (this.playerNameFC.value) {
+        this.players.push({
+          id: 'player' + Number(this.players.length + 1),
+          name: this.playerNameFC.value,
+          data: {
+            out: [
+              { hole: `player${this.players.length + 1}h1`, score: 0 },
+              { hole: `player${this.players.length + 1}h2`, score: 0 },
+              { hole: `player${this.players.length + 1}h3`, score: 0 },
+              { hole: `player${this.players.length + 1}h4`, score: 0 },
+              { hole: `player${this.players.length + 1}h5`, score: 0 },
+              { hole: `player${this.players.length + 1}h6`, score: 0 },
+              { hole: `player${this.players.length + 1}h7`, score: 0 },
+              { hole: `player${this.players.length + 1}h8`, score: 0 },
+              { hole: `player${this.players.length + 1}h9`, score: 0 },
+            ],
+            in: [
+              { hole: `player${this.players.length + 1}h10`, score: 0 },
+              { hole: `player${this.players.length + 1}h11`, score: 0 },
+              { hole: `player${this.players.length + 1}h12`, score: 0 },
+              { hole: `player${this.players.length + 1}h13`, score: 0 },
+              { hole: `player${this.players.length + 1}h14`, score: 0 },
+              { hole: `player${this.players.length + 1}h15`, score: 0 },
+              { hole: `player${this.players.length + 1}h16`, score: 0 },
+              { hole: `player${this.players.length + 1}h17`, score: 0 },
+              { hole: `player${this.players.length + 1}h18`, score: 0 },
+            ],
+          },
+        });
+        this.playerNameFC.setValue('');
+      }
     }
   }
 
@@ -159,9 +162,9 @@ export class ScoreCardComponent implements OnInit {
       let hole = Number(event.target.id.substr(8) - 1);
       let player = event.target.parentNode.parentNode.id;
       let score = Number(event.target.value);
-      console.log(hole)
+      console.log(hole);
       let targetPlayer = this.players.find((p) => p.id === player);
-      console.log(targetPlayer)
+      console.log(targetPlayer);
       if (hole <= 8) {
         targetPlayer.data.out[hole].score = score;
       }
@@ -169,9 +172,9 @@ export class ScoreCardComponent implements OnInit {
         targetPlayer.data.in[hole - 9].score = score;
       }
     }
-    if(this.isGameComplete()){
+    if (this.isGameComplete()) {
       this.isComplete = true;
-    };
+    }
   }
 
   isGameComplete() {
@@ -181,17 +184,30 @@ export class ScoreCardComponent implements OnInit {
     this.players.forEach((p) => {
       let outContainsZero = p.data.out.some((hole) => hole.score === 0);
       let inContainsZero = p.data.in.some((hole) => hole.score === 0);
-      
+
       if (outContainsZero === false && inContainsZero === false) {
-        
         completeCount += 1;
       }
     });
 
-    if (completeCount === this.players.length){
+    if (completeCount === this.players.length) {
       complete = true;
-      console.log('TRIGGER')
+      console.log('TRIGGER');
     }
     return complete;
+  }
+
+  nameValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      let error = null;
+      if (this.players && this.players.length) {
+        this.players.forEach((player) => {
+          if (player.name.toLowerCase() === control.value.toLowerCase()) {
+            error = { duplicate: true };
+          }
+        });
+      }
+      return error;
+    };
   }
 }
