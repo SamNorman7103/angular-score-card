@@ -12,6 +12,10 @@ export class ScoreCardComponent implements OnInit {
   selectedCourse: any[] = [];
   tee: number; //0 pro 1 Champion 2 Men 3 Women
   players: Player[] = [];
+  isComplete: boolean;
+  totalPar: number;
+  totalYards: number;
+  totalHcap: number;
 
   constructor(
     private CoursesService: CoursesService,
@@ -21,6 +25,11 @@ export class ScoreCardComponent implements OnInit {
   ngOnInit(): void {
     this.tee = 2;
     this.addPlayer();
+    this.isComplete = false;
+    this.totalPar = 0;
+    this.totalYards = 0;
+    this.totalHcap = 0;
+
 
     this.CoursesService.getCourses().subscribe((response: any) => {
       response.courses.forEach((course) => {
@@ -147,21 +156,42 @@ export class ScoreCardComponent implements OnInit {
 
   updateScore(event) {
     if (Number(event.key)) {
-      console.log(event);
       let hole = Number(event.target.id.substr(8) - 1);
       let player = event.target.parentNode.parentNode.id;
       let score = Number(event.target.value);
-      console.log(`${hole} ${player} ${score}`);
-
-      let targetPlayer = this.players.find((p) => (p.id === player));
-
-      if (hole <= 9) {
+      console.log(hole)
+      let targetPlayer = this.players.find((p) => p.id === player);
+      console.log(targetPlayer)
+      if (hole <= 8) {
         targetPlayer.data.out[hole].score = score;
       }
-      if (hole >= 10) {
-        targetPlayer.data.in[hole-9].score = score;
+      if (hole >= 9) {
+        targetPlayer.data.in[hole - 9].score = score;
       }
-      console.log(this.players);
     }
+    if(this.isGameComplete()){
+      this.isComplete = true;
+    };
+  }
+
+  isGameComplete() {
+    let completeCount = 0;
+    let complete = false;
+
+    this.players.forEach((p) => {
+      let outContainsZero = p.data.out.some((hole) => hole.score === 0);
+      let inContainsZero = p.data.in.some((hole) => hole.score === 0);
+      
+      if (outContainsZero === false && inContainsZero === false) {
+        
+        completeCount += 1;
+      }
+    });
+
+    if (completeCount === this.players.length){
+      complete = true;
+      console.log('TRIGGER')
+    }
+    return complete;
   }
 }
