@@ -20,7 +20,7 @@ export class ScoreCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.tee = 2;
-    this.addPlayer()
+    this.addPlayer();
 
     this.CoursesService.getCourses().subscribe((response: any) => {
       response.courses.forEach((course) => {
@@ -41,7 +41,7 @@ export class ScoreCardComponent implements OnInit {
       });
     });
   }
-  
+
   getOutPar() {
     let par = [];
     this.selectedCourse[0].holes.forEach((hole) => {
@@ -106,16 +106,62 @@ export class ScoreCardComponent implements OnInit {
     this.tee = tee;
   }
 
-  addPlayer(){
-    if (this.players.length < 4){
-      this.players.push(
-        {
-         id: "player" + Number(this.players.length+1),
-         name: "",
-         score: 0
-        }
-      )
+  addPlayer() {
+    if (this.players.length < 4) {
+      this.players.push({
+        id: 'player' + Number(this.players.length + 1),
+        name: '',
+        data: {
+          out: [
+            { hole: `player${this.players.length + 1}h1`, score: 0 },
+            { hole: `player${this.players.length + 1}h2`, score: 0 },
+            { hole: `player${this.players.length + 1}h3`, score: 0 },
+            { hole: `player${this.players.length + 1}h4`, score: 0 },
+            { hole: `player${this.players.length + 1}h5`, score: 0 },
+            { hole: `player${this.players.length + 1}h6`, score: 0 },
+            { hole: `player${this.players.length + 1}h7`, score: 0 },
+            { hole: `player${this.players.length + 1}h8`, score: 0 },
+            { hole: `player${this.players.length + 1}h9`, score: 0 },
+          ],
+          in: [
+            { hole: `player${this.players.length + 1}h10`, score: 0 },
+            { hole: `player${this.players.length + 1}h11`, score: 0 },
+            { hole: `player${this.players.length + 1}h12`, score: 0 },
+            { hole: `player${this.players.length + 1}h13`, score: 0 },
+            { hole: `player${this.players.length + 1}h14`, score: 0 },
+            { hole: `player${this.players.length + 1}h15`, score: 0 },
+            { hole: `player${this.players.length + 1}h16`, score: 0 },
+            { hole: `player${this.players.length + 1}h17`, score: 0 },
+            { hole: `player${this.players.length + 1}h18`, score: 0 },
+          ],
+        },
+      });
     }
   }
-  
+
+  isNumber(event) {
+    if (!Number(event.key)) {
+      return false;
+    }
+  }
+
+  updateScore(event) {
+    if (Number(event.key)) {
+      console.log(event);
+      let hole = Number(event.target.id.substr(8) - 1);
+      let player = event.target.parentNode.parentNode.id;
+      let score = Number(event.target.value);
+      console.log(`${hole} ${player} ${score}`);
+
+      let targetPlayer = this.players.find((p) => (p.id === player));
+
+      if (hole <= 9) {
+        targetPlayer.data.out[hole].score = score;
+      }
+      if (hole >= 10) {
+        targetPlayer.data.in[hole-9].score = score;
+      }
+      console.log(this.players);
+    }
+  }
 }

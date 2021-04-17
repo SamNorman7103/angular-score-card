@@ -61,8 +61,8 @@
             <td>
               <input type="text" placeholder={{player.id}} />
             </td>
-            <td *ngFor="let hole of [0, 1, 2, 3, 4, 5, 6, 7, 8]">
-              <input type="text" name="{{ hole + 1}}" placeholder="..." />
+            <td *ngFor="let hole of player.data.out">
+              <input type="text" maxlength="2" placeholder="..." id={{hole.hole}} (keypress)="isNumber($event)" (keyup)="updateScore($event)" />
             </td>
             <td id={{player.id}}></td>
           </tr>
@@ -107,8 +107,8 @@
         </tbody>
         <tbody>
           <tr *ngFor="let player of players" id={{player.id}}>
-            <td *ngFor="let hole of [0, 1, 2, 3, 4, 5, 6, 7, 8]">
-              <input type="text" name="{{ hole + 1}}" placeholder="..." />
+            <td *ngFor="let hole of player.data.in">
+              <input type="text" maxlength="2" placeholder="..." id={{hole.hole}} (keypress)="isNumber($event)" (keyup)="updateScore($event)" />
             </td>
             <td id={{player.id}}></td>
           </tr>

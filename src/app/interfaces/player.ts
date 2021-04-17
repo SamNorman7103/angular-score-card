@@ -1,5 +1,5 @@
 export interface Player {
     id: string;
     name: string;
-    score: number;
+    data: {out: any[],in: any[]};
 }
