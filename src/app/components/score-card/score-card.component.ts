@@ -27,9 +27,9 @@ export class ScoreCardComponent implements OnInit {
   ngOnInit(): void {
     this.tee = 2;
     this.isComplete = false;
+    this.totalHcap = 0;
     this.totalPar = 0;
     this.totalYards = 0;
-    this.totalHcap = 0;
 
     this.CoursesService.getCourses().subscribe((response: any) => {
       response.courses.forEach((course) => {
@@ -44,11 +44,13 @@ export class ScoreCardComponent implements OnInit {
                 holes: response.data.holes,
               });
               console.log(this.selectedCourse);
+              this.calculateTotalCourseValues()
             }
           }
         );
       });
     });
+
   }
 
   getOutPar() {
@@ -209,5 +211,17 @@ export class ScoreCardComponent implements OnInit {
       }
       return error;
     };
+  }
+
+  calculateTotalCourseValues(){
+      console.log("helasdklsakl")
+      let course = this.selectedCourse[0];
+      course.holes.forEach((hole) => {
+        console.log(hole.teeBoxes[this.tee])
+        this.totalPar += hole.teeBoxes[this.tee].par;
+        this.totalYards += hole.teeBoxes[this.tee].yards;
+        this.totalHcap += hole.teeBoxes[this.tee].hcp;
+      })
+    
   }
 }

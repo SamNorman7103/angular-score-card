@@ -40,14 +40,14 @@
               <td *ngFor="let hole of getOutPar()">
                 {{ hole.par }}
               </td>
-              <td id="par-out-total"></td>
+              <td id="par-out-total">{{totalPar}}</td>
             </tr>
             <tr class="yardage-row">
               <td class="rowLabel">Yards</td>
               <td *ngFor="let hole of getOutYards()">
                 {{ hole.yards }}
               </td>
-              <td id="yards-out-total"></td>
+              <td id="yards-out-total">{{totalYards}}</td>
             </tr>
           </tbody>
           <tbody>
@@ -56,7 +56,7 @@
               <td *ngFor="let hole of getOutHcap()">
                 {{ hole.hcp }}
               </td>
-              <td id="handicap-out-total"></td>
+              <td id="handicap-out-total">{{totalHcap}}</td>
             </tr>
           </tbody>
           <tbody>
