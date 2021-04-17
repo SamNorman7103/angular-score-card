@@ -30,6 +30,8 @@ time, mark, audio, video {
 .button{
     background-color: rgba(0, 115, 255, 0.447);
     margin: 5px;
+    font-size: 12px;
+    text-align: center;
 }
 
 .formfield{
@@ -59,7 +61,7 @@ table {
 }
 
 td {
-    padding: 4px 5px;
+    
     border: solid thin black;
     text-align: center;
 }
@@ -114,6 +116,7 @@ input{
       display: flex;
       flex-direction: column;
       width: 100%;
+      align-items: center;
     }
-    
-  }
+
+}

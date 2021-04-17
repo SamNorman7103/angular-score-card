@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,10 @@ export class CoursesService {
   ){}
 
   //Get Courses
-  getCourses(){
+  getCourses(): Observable<any>{
     return this.http.get('https://golf-courses-api.herokuapp.com/courses/')
   }
-  getCourseData(id: string){
+  getCourseData(id: string): Observable<any>{
     return this.http.get(`https://golf-courses-api.herokuapp.com/courses/${id}`);
   }
 }

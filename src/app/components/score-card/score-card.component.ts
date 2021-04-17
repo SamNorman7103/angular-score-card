@@ -44,7 +44,7 @@ export class ScoreCardComponent implements OnInit {
                 holes: response.data.holes,
               });
               console.log(this.selectedCourse);
-              this.calculateTotalCourseValues()
+              this.calculateTotalCourseValues();
             }
           }
         );
@@ -115,6 +115,8 @@ export class ScoreCardComponent implements OnInit {
 
   setTee(tee: number) {
     this.tee = tee;
+    this.calculateTotalCourseValues();
+    
   }
 
   addPlayer(): void {
@@ -214,14 +216,19 @@ export class ScoreCardComponent implements OnInit {
   }
 
   calculateTotalCourseValues(){
-      console.log("helasdklsakl")
+      let par = 0;
+      let yards = 0;
+      let hcap = 0;
+
       let course = this.selectedCourse[0];
       course.holes.forEach((hole) => {
         console.log(hole.teeBoxes[this.tee])
-        this.totalPar += hole.teeBoxes[this.tee].par;
-        this.totalYards += hole.teeBoxes[this.tee].yards;
-        this.totalHcap += hole.teeBoxes[this.tee].hcp;
+        par += hole.teeBoxes[this.tee].par;
+        yards += hole.teeBoxes[this.tee].yards;
+        hcap += hole.teeBoxes[this.tee].hcp;
       })
-    
+    this.totalYards = yards;
+    this.totalPar = par;
+    this.totalHcap = hcap;
   }
 }
