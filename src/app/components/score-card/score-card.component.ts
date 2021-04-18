@@ -20,6 +20,7 @@ export class ScoreCardComponent implements OnInit {
   inPar: number;
   inYards: number;
   inHcap: number;
+  tees: any[] = [];
   
   playerNameFC = new FormControl('', this.nameValidator());
 
@@ -52,6 +53,7 @@ export class ScoreCardComponent implements OnInit {
               });
               console.log(this.selectedCourse);
               this.calculateTotalCourseValues();
+              this.populateTees();
             }
           }
         );
@@ -120,10 +122,10 @@ export class ScoreCardComponent implements OnInit {
     return hcap;
   }
 
-  setTee(tee: number) {
-    this.tee = tee;
+  setTee(tee: string) {
+    let index = this.tees.findIndex(t => t.tee === tee);
+    this.tee = index;
     this.calculateTotalCourseValues();
-    
   }
 
   addPlayer(): void {
@@ -249,5 +251,23 @@ export class ScoreCardComponent implements OnInit {
       this.outPar = outPar;
       this.outYards = outYards;
       this.outHcap = outHcap;
+  }
+
+  populateTees(){
+    this.selectedCourse[0].holes[0].teeBoxes.forEach(tee => {
+      if (tee.teeType == "pro"){
+        this.tees.push({tee: tee.teeType, value: 0})
+      } //0 pro 1 Champion 2 Men 3 Women
+      if (tee.teeType == "champion"){
+        this.tees.push({tee: tee.teeType, value: 1})
+      }
+      if (tee.teeType == "men"){
+        this.tees.push({tee: tee.teeType, value: 2})
+      }
+      if (tee.teeType == "women"){
+        this.tees.push({tee: tee.teeType, value: 3})
+      }
+      console.log(this.tees)
+    })
   }
 }

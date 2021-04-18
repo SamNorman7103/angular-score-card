@@ -6,12 +6,10 @@
 
         <div class="flex" id="tee-select">
           <span>Select Tee:</span>
-          <button mat-button class="button" (click)="setTee(2)">Men's</button>
-          <button mat-button class="button" (click)="setTee(3)">Women's</button>
-          <button mat-button class="button" (click)="setTee(0)">Pro</button>
-          <button mat-button class="button" (click)="setTee(1)">
-            Champion
-          </button>
+          
+          <button *ngFor="let tee of tees;" mat-button class="button" (click)="setTee(tee.tee)">{{tee.tee}}</button>
+          
+          
         </div>
       </div>
     </div>
