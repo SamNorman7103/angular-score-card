@@ -173,6 +173,8 @@ export class ScoreCardComponent implements OnInit {
   isNumber(event) {
     if (!Number(event.key)) {
       return false;
+    } else {
+      this.updateScore(event)
     }
   }
 
