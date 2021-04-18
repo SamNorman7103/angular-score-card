@@ -20,7 +20,7 @@ import { SummaryComponent } from './components/summary/summary.component';
     NavBarComponent,
     CourseSelectComponent,
     SummaryComponent,
-
+    
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CoursesService } from '../../services/courses.service';
 import { ActivatedRoute } from '@angular/router';
 import { Player } from '../../interfaces/player';
 import { FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
+import { GameDataService } from 'src/app/services/game-data.service';
 
 @Component({
   selector: 'score-card',
@@ -22,11 +23,13 @@ export class ScoreCardComponent implements OnInit {
   inHcap: number;
   tees: any[] = [];
   
+
   playerNameFC = new FormControl('', this.nameValidator());
 
   constructor(
     private CoursesService: CoursesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private gameDataService: GameDataService
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +41,7 @@ export class ScoreCardComponent implements OnInit {
     this.inHcap = 0;
     this.inPar = 0;
     this.inYards = 0;
-
+    
     this.CoursesService.getCourses().subscribe((response: any) => {
       response.courses.forEach((course) => {
         this.CoursesService.getCourseData(course.id).subscribe(
@@ -205,6 +208,7 @@ export class ScoreCardComponent implements OnInit {
 
     if (completeCount === this.players.length) {
       complete = true;
+      this.gameDataService.setGameData([{playerData: this.players},{complete: this.isComplete}])
       console.log('TRIGGER');
     }
     return complete;

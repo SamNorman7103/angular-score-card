@@ -1,1 +1,15 @@
-<p>summary works!</p>
+<mat-card class="flex">
+  <span>Click here when all scores are filled:</span>
+  <button mat-button (click)="getGameData()">End Game</button>
+  <table>
+    <tbody>
+      <tr>
+        <td class="rowLabel">Player Name</td>
+        <td class="columnLabel">Score</td>
+        <td class="columnLabel">Standing</td>
+      </tr>
+      <tr *ngFor="let player of gameData.playerData !== undefined ? gameData.playerData : [0]"></tr>
+        
+    </tbody>
+  </table>
+</mat-card>

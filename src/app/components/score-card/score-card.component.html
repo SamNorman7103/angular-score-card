@@ -6,147 +6,156 @@
 
         <div class="flex" id="tee-select">
           <span>Select Tee:</span>
-          
-          <button *ngFor="let tee of tees;" mat-button class="button" (click)="setTee(tee.tee)">{{tee.tee}}</button>
-          
-          
+
+          <button
+            *ngFor="let tee of tees"
+            mat-button
+            class="button"
+            (click)="setTee(tee.tee)"
+          >
+            {{ tee.tee }}
+          </button>
         </div>
       </div>
     </div>
     <div id="game-finished-message"></div>
     <div id="main-card-container">
-    
-        <table id="out-container">
-          <tbody>
-            <tr class="hole-row">
-              <td class="rowLabel">Hole</td>
-              <td class="columnLabel">1</td>
-              <td class="columnLabel">2</td>
-              <td class="columnLabel">3</td>
-              <td class="columnLabel">4</td>
-              <td class="columnLabel">5</td>
-              <td class="columnLabel">6</td>
-              <td class="columnLabel">7</td>
-              <td class="columnLabel">8</td>
-              <td class="columnLabel">9</td>
-              <td class="columnLabel">Out</td>
-            </tr>
-          </tbody>
-          <tbody class="top-section">
-            <tr class="par-row">
-              <td class="rowLabel">Par</td>
-              <td *ngFor="let hole of getOutPar()">
-                {{ hole.par }}
-              </td>
-              <td id="par-out-total">{{outPar}}</td>
-            </tr>
-            <tr class="yardage-row">
-              <td class="rowLabel">Yards</td>
-              <td *ngFor="let hole of getOutYards()">
-                {{ hole.yards }}
-              </td>
-              <td id="yards-out-total">{{outYards}}</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr class="handicap-row">
-              <td class="rowLabel">Hcap</td>
-              <td *ngFor="let hole of getOutHcap()">
-                {{ hole.hcp }}
-              </td>
-              <td id="handicap-out-total">{{outHcap}}</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr *ngFor="let player of players" id="{{ player.id }}">
-              <td>{{player.name}}</td>
-              <td *ngFor="let hole of player.data.out">
-                <input
-                  matInput
-                  type="text"
-                  maxlength="2"
-                  placeholder="..."
-                  id="{{ hole.hole }}"
-                  (keypress)="isNumber($event)"
-                  (keyup)="updateScore($event)"
-                />
-              </td>
-              <td id="{{ player.id }}"></td>
-            </tr>
-          </tbody>
-        </table>
-      
-    
-        <table id="in-container">
-          <tbody>
-            <tr class="hole-row">
-              <td class="columnLabel">10</td>
-              <td class="columnLabel">11</td>
-              <td class="columnLabel">12</td>
-              <td class="columnLabel">13</td>
-              <td class="columnLabel">14</td>
-              <td class="columnLabel">15</td>
-              <td class="columnLabel">16</td>
-              <td class="columnLabel">17</td>
-              <td class="columnLabel">18</td>
-              <td class="columnLabel" id="hole-in-total">In</td>
-            </tr>
-          </tbody>
-          <tbody class="top-section">
-            <tr class="par-row">
-              <td *ngFor="let hole of getInPar()">
-                {{ hole.par }}
-              </td>
-              <td id="par-in-total">{{inPar}}</td>
-            </tr>
-            <tr class="yardage-row">
-              <td *ngFor="let hole of getInYards()">
-                {{ hole.yards }}
-              </td>
-              <td id="yards-in-total">{{inYards}}</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr class="handicap-row">
-              <td *ngFor="let hole of getInHcap()">
-                {{ hole.hcp }}
-              </td>
-              <td id="handicap-in-total">{{inHcap}}</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr *ngFor="let player of players" id="{{ player.id }}">
-              <td *ngFor="let hole of player.data.in">
-                <input
-                  matInput
-                  type="text"
-                  maxlength="2"
-                  placeholder="..."
-                  id="{{ hole.hole }}"
-                  (keypress)="isNumber($event)"
-                  (keyup)="updateScore($event)"
-                />
-              </td>
-              <td id="{{ player.id }}"></td>
-            </tr>
-          </tbody>
-        </table>
-      
+      <table id="out-container">
+        <tbody>
+          <tr class="hole-row">
+            <td class="rowLabel">Hole</td>
+            <td class="columnLabel">1</td>
+            <td class="columnLabel">2</td>
+            <td class="columnLabel">3</td>
+            <td class="columnLabel">4</td>
+            <td class="columnLabel">5</td>
+            <td class="columnLabel">6</td>
+            <td class="columnLabel">7</td>
+            <td class="columnLabel">8</td>
+            <td class="columnLabel">9</td>
+            <td class="columnLabel">Out</td>
+          </tr>
+        </tbody>
+        <tbody class="top-section">
+          <tr class="par-row">
+            <td class="rowLabel">Par</td>
+            <td *ngFor="let hole of getOutPar()">
+              {{ hole.par }}
+            </td>
+            <td id="par-out-total">{{ outPar }}</td>
+          </tr>
+          <tr class="yardage-row">
+            <td class="rowLabel">Yards</td>
+            <td *ngFor="let hole of getOutYards()">
+              {{ hole.yards }}
+            </td>
+            <td id="yards-out-total">{{ outYards }}</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="handicap-row">
+            <td class="rowLabel">Hcap</td>
+            <td *ngFor="let hole of getOutHcap()">
+              {{ hole.hcp }}
+            </td>
+            <td id="handicap-out-total">{{ outHcap }}</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr *ngFor="let player of players" id="{{ player.id }}">
+            <td>{{ player.name }}</td>
+            <td *ngFor="let hole of player.data.out">
+              <input
+                matInput
+                type="text"
+                maxlength="2"
+                placeholder="..."
+                id="{{ hole.hole }}"
+                (keypress)="isNumber($event)"
+                (keyup)="updateScore($event)"
+              />
+            </td>
+            <td id="{{ player.id }}"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table id="in-container">
+        <tbody>
+          <tr class="hole-row">
+            <td class="columnLabel">10</td>
+            <td class="columnLabel">11</td>
+            <td class="columnLabel">12</td>
+            <td class="columnLabel">13</td>
+            <td class="columnLabel">14</td>
+            <td class="columnLabel">15</td>
+            <td class="columnLabel">16</td>
+            <td class="columnLabel">17</td>
+            <td class="columnLabel">18</td>
+            <td class="columnLabel" id="hole-in-total">In</td>
+          </tr>
+        </tbody>
+        <tbody class="top-section">
+          <tr class="par-row">
+            <td *ngFor="let hole of getInPar()">
+              {{ hole.par }}
+            </td>
+            <td id="par-in-total">{{ inPar }}</td>
+          </tr>
+          <tr class="yardage-row">
+            <td *ngFor="let hole of getInYards()">
+              {{ hole.yards }}
+            </td>
+            <td id="yards-in-total">{{ inYards }}</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="handicap-row">
+            <td *ngFor="let hole of getInHcap()">
+              {{ hole.hcp }}
+            </td>
+            <td id="handicap-in-total">{{ inHcap }}</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr *ngFor="let player of players" id="{{ player.id }}">
+            <td *ngFor="let hole of player.data.in">
+              <input
+                matInput
+                type="text"
+                maxlength="2"
+                placeholder="..."
+                id="{{ hole.hole }}"
+                (keypress)="isNumber($event)"
+                (keyup)="updateScore($event)"
+              />
+            </td>
+            <td id="{{ player.id }}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="addPlayer">
+      <mat-form-field class="formfield">
+        <input
+          matInput
+          type="text"
+          [formControl]="playerNameFC"
+          placeholder="Insert name here..."
+        />
+        <mat-error *ngIf="playerNameFC.hasError('duplicate')">
+          Name already in use. Try again.
+        </mat-error>
+      </mat-form-field>
+      <button
+        mat-button
+        class="button"
+        (click)="addPlayer()"
+        [disabled]="playerNameFC.invalid"
+      >
+        Add Player
+      </button>
     </div>
   </div>
-
-    <mat-form-field class="formfield">
-      <input
-        matInput
-        type="text"
-        [formControl]="playerNameFC"
-        placeholder="Insert name here..."
-      />
-      <mat-error *ngIf="playerNameFC.hasError('duplicate')">
-        Name already in use. Try again.
-        </mat-error>
-    </mat-form-field>
-
-    <button mat-button class="button" (click)="addPlayer()" [disabled]="playerNameFC.invalid">Add Player</button>
-  
 </div>
+<app-summary></app-summary>
