@@ -14,9 +14,13 @@ export class ScoreCardComponent implements OnInit {
   tee: number; //0 pro 1 Champion 2 Men 3 Women
   players: Player[] = [];
   isComplete: boolean;
-  totalPar: number;
-  totalYards: number;
-  totalHcap: number;
+  outPar: number;
+  outYards: number;
+  outHcap: number;
+  inPar: number;
+  inYards: number;
+  inHcap: number;
+  
   playerNameFC = new FormControl('', this.nameValidator());
 
   constructor(
@@ -27,9 +31,12 @@ export class ScoreCardComponent implements OnInit {
   ngOnInit(): void {
     this.tee = 2;
     this.isComplete = false;
-    this.totalHcap = 0;
-    this.totalPar = 0;
-    this.totalYards = 0;
+    this.outHcap = 0;
+    this.outPar = 0;
+    this.outYards = 0;
+    this.inHcap = 0;
+    this.inPar = 0;
+    this.inYards = 0;
 
     this.CoursesService.getCourses().subscribe((response: any) => {
       response.courses.forEach((course) => {
@@ -216,19 +223,31 @@ export class ScoreCardComponent implements OnInit {
   }
 
   calculateTotalCourseValues(){
-      let par = 0;
-      let yards = 0;
-      let hcap = 0;
+      let inPar = 0;
+      let inYards = 0;
+      let inHcap = 0;
+      let outPar = 0;
+      let outYards = 0;
+      let outHcap = 0;
 
       let course = this.selectedCourse[0];
-      course.holes.forEach((hole) => {
-        console.log(hole.teeBoxes[this.tee])
-        par += hole.teeBoxes[this.tee].par;
-        yards += hole.teeBoxes[this.tee].yards;
-        hcap += hole.teeBoxes[this.tee].hcp;
-      })
-    this.totalYards = yards;
-    this.totalPar = par;
-    this.totalHcap = hcap;
+      for (let i = 0; i < course.holes.length; i++){
+        if (i <= 9){
+          outPar += course.holes[i].teeBoxes[this.tee].par;
+          outYards += course.holes[i].teeBoxes[this.tee].yards;
+          outHcap += course.holes[i].teeBoxes[this.tee].hcp;
+        }
+        else if (i >= 10){
+          inPar += course.holes[i].teeBoxes[this.tee].par;
+          inYards += course.holes[i].teeBoxes[this.tee].yards;
+          inHcap += course.holes[i].teeBoxes[this.tee].hcp;
+        }
+      }
+      this.inPar = inPar;
+      this.inYards = inYards;
+      this.inHcap = inHcap;
+      this.outPar = outPar;
+      this.outYards = outYards;
+      this.outHcap = outHcap;
   }
 }
