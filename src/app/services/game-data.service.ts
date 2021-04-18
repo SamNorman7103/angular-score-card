@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameDataService {
 
-  constructor() {}
+  constructor(private db: AngularFirestore) {}
 
   gameData: any;
 
@@ -16,4 +17,8 @@ export class GameDataService {
   setGameData(x: any){
     this.gameData = x;
   }
+
+  saveGame(data: any): any {
+    this.db.collection('save-data').add(data);
+}
 }

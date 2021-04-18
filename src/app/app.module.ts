@@ -12,6 +12,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CourseSelectComponent } from './components/course-select/course-select.component';
 import { SummaryComponent } from './components/summary/summary.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { SummaryComponent } from './components/summary/summary.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

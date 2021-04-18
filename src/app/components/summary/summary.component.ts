@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GameDataService } from 'src/app/services/game-data.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-summary',
@@ -12,7 +12,7 @@ export class SummaryComponent implements OnInit {
   gameData: any;
   visible: boolean;
 
-  constructor(private gameDataService: GameDataService) { }
+  constructor(private gameDataService: GameDataService, private router: Router) { }
 
   ngOnInit(): void {
     this.gameData = [{},{}]
@@ -53,8 +53,11 @@ export class SummaryComponent implements OnInit {
         this.visible = true;
       }
     }
-    
-    
   }
+
+  save(): void {
+    this.gameDataService.saveGame(this.gameData);
+    this.router.navigate(['./home']);
+}
 
 }

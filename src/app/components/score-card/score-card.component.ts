@@ -215,7 +215,7 @@ export class ScoreCardComponent implements OnInit {
 
     if (completeCount === this.players.length) {
       complete = true;
-      this.gameDataService.setGameData({playerData: this.players, par: this.inPar + this.outPar})
+      this.gameDataService.setGameData({playerData: this.players, par: this.inPar + this.outPar, course: this.selectedCourse})
       console.log('TRIGGER');
     }
     return complete;
