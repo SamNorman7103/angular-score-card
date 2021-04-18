@@ -188,6 +188,7 @@ export class ScoreCardComponent implements OnInit {
         targetPlayer.data.in[hole - 9].score = score;
       }
     }
+
     if (this.isGameComplete()) {
       this.isComplete = true;
     }
@@ -208,7 +209,7 @@ export class ScoreCardComponent implements OnInit {
 
     if (completeCount === this.players.length) {
       complete = true;
-      this.gameDataService.setGameData([{playerData: this.players},{complete: this.isComplete}])
+      this.gameDataService.setGameData({playerData: this.players, par: this.inPar + this.outPar})
       console.log('TRIGGER');
     }
     return complete;
