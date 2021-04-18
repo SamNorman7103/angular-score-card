@@ -1,6 +1,8 @@
 <mat-card class="flex">
-  <span>Click here when all scores are filled:</span>
-  <button mat-button (click)="getGameData()">End Game</button>
+  <div *ngIf="visible === false">
+    <span>Click here when all scores are filled:</span>
+    <button mat-button (click)="getGameData()">End Game</button>
+  </div>
   <table *ngIf="visible">
     <tbody>
       <tr>
@@ -8,10 +10,10 @@
         <td class="columnLabel">Score</td>
         <td class="columnLabel">Standing</td>
       </tr>
-      <tr *ngFor="let player of (scores[0] !== undefined ? scores : [0])">
-          <td>{{player.name}}</td>
-          <td>{{player.score}}</td>
-          <td>{{player.standing}}</td>
+      <tr *ngFor="let player of scores[0] !== undefined ? scores : [0]">
+        <td>{{ player.name }}</td>
+        <td>{{ player.score }}</td>
+        <td>{{ player.standing }}</td>
       </tr>
     </tbody>
   </table>

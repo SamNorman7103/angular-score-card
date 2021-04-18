@@ -75,7 +75,7 @@
                 (keyup)="updateScore($event)"
               />
             </td>
-            <td id="{{ player.id }}"></td>
+            <td id="{{ player.id }}">{{player.data.outScore}}</td>
           </tr>
         </tbody>
       </table>
@@ -130,7 +130,7 @@
                 (keyup)="updateScore($event)"
               />
             </td>
-            <td id="{{ player.id }}"></td>
+            <td id="{{ player.id }}">{{player.data.inScore}}</td>
           </tr>
         </tbody>
       </table>

@@ -36,7 +36,7 @@ export class SummaryComponent implements OnInit {
             score += p.data.out[i].score
           }
           for(let i = 0; i < p.data.in.length; i++){
-            score += p.data.out[i].score
+            score += p.data.in[i].score
           }
           if (score < this.gameData.par){
             standing = "Below Par. Awesome!"

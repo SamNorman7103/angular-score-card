@@ -22,6 +22,7 @@ export class ScoreCardComponent implements OnInit {
   inYards: number;
   inHcap: number;
   tees: any[] = [];
+
   
 
   playerNameFC = new FormControl('', this.nameValidator());
@@ -160,6 +161,8 @@ export class ScoreCardComponent implements OnInit {
               { hole: `player${this.players.length + 1}h17`, score: 0 },
               { hole: `player${this.players.length + 1}h18`, score: 0 },
             ],
+            outScore: 0,
+            inScore: 0
           },
         });
         this.playerNameFC.setValue('');
@@ -187,6 +190,7 @@ export class ScoreCardComponent implements OnInit {
       if (hole >= 9) {
         targetPlayer.data.in[hole - 9].score = score;
       }
+      this.calcOutInScore(targetPlayer.id)
     }
 
     if (this.isGameComplete()) {
@@ -239,12 +243,12 @@ export class ScoreCardComponent implements OnInit {
 
       let course = this.selectedCourse[0];
       for (let i = 0; i < course.holes.length; i++){
-        if (i <= 9){
+        if (i <= 8){
           outPar += course.holes[i].teeBoxes[this.tee].par;
           outYards += course.holes[i].teeBoxes[this.tee].yards;
           outHcap += course.holes[i].teeBoxes[this.tee].hcp;
         }
-        else if (i >= 10){
+        else if (i >= 9){
           inPar += course.holes[i].teeBoxes[this.tee].par;
           inYards += course.holes[i].teeBoxes[this.tee].yards;
           inHcap += course.holes[i].teeBoxes[this.tee].hcp;
@@ -274,5 +278,19 @@ export class ScoreCardComponent implements OnInit {
       }
       console.log(this.tees)
     })
+  }
+
+  calcOutInScore(playerId: any){
+    let targetPlayer = this.players.find((p) => p.id === playerId);
+    let outScore = 0;
+    let inScore = 0;
+    targetPlayer.data.out.forEach(h => {
+      outScore += h.score
+    })
+    targetPlayer.data.in.forEach(h => {
+      inScore += h.score
+    })
+    targetPlayer.data.outScore = outScore;
+    targetPlayer.data.inScore = inScore;
   }
 }
